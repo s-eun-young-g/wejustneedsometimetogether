@@ -55,6 +55,28 @@ whole point of building the engine first.
 
 This package is the **testable core**; the backend and iOS app sit on top of it.
 
+## Backend
+
+A small FastAPI + SQLModel service (SQLite for dev) that the phone talks to. It
+stores only pairwise session summaries — never continuous location — and reuses
+the `tt` engine to compute Wrapped server-side.
+
+```bash
+pip install -e '.[server]'
+tt-server                       # http://127.0.0.1:8000  (docs at /docs)
+```
+
+| Endpoint | Does |
+|---|---|
+| `POST /auth/register` | create a user, get a bearer token (MVP auth; Sign in with Apple later) |
+| `POST /groups` · `POST /groups/join` · `GET /groups` | create / join (by invite code) / list your groups |
+| `POST /sessions` | upload pairwise session summaries — only logs with people who share a group |
+| `GET /wrapped` | your Wrapped (optionally `?group_id=` / `?days=` / `?home_work=`) |
+
+Two design points baked in: a session is between two *people* (a group only governs
+who may log/see it), and duplicate uploads from both phones in a hang are
+**reconciled** (merged) so a hang counts once.
+
 ## The eventual app (design summary)
 
 - **Detection — hybrid:** Bluetooth LE decides *who* you're with (measures real
@@ -71,8 +93,9 @@ This package is the **testable core**; the backend and iOS app sit on top of it.
 ## Roadmap
 
 - **Engine + simulator (done):** sightings → sessions → Wrapped, fully tested.
-- **Backend:** auth, groups/invites, session ingest, Wrapped API.
-- **iOS de-risk spike:** two phones, background co-presence — go/no-go.
+- **Backend (done):** FastAPI auth, groups/invites, session ingest (shared-group
+  + duplicate reconcile), Wrapped API — reuses the engine, tested via TestClient.
+- **iOS de-risk spike (next):** two phones, background co-presence — go/no-go.
 - **iOS app:** detect-and-upload client + Wrapped screen.
 
 ## Tests

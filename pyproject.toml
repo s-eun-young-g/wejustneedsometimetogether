@@ -12,8 +12,12 @@ license = { text = "MIT" }
 authors = [{ name = "s-eun-young-g" }]
 keywords = ["co-presence", "location", "social", "wrapped", "bluetooth"]
 
+[project.optional-dependencies]
+server = ["fastapi>=0.110", "uvicorn>=0.29", "sqlmodel>=0.0.16"]
+
 [project.scripts]
 tt = "tt.cli:main"
+tt-server = "tt.server.app:run"
 
 [tool.setuptools.packages.find]
 where = ["src"]
