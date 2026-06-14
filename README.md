@@ -1,12 +1,14 @@
 # we just need some time together
 
-How much time do you actually spend *with* the people you care about — and where?
-TT records co-presence: when you and someone in your group are physically
-together, it logs the time and place, then turns it into a "Wrapped."
+How much time do you *actually* spend with your people — and where, and when? TT
+quietly notices when you and someone in your group are physically together, logs
+the time + place, and at the end hands you a little "Wrapped" for your friendships.
+Think Life360, but make it wholesome (and way less surveillance-y).
 
-**It's a co-presence recorder, not a location tracker.** TT never needs to know
-where you are when you're alone — only the time and place you spend *with* someone
-who's also in your group and opted in. That principle drives the whole design.
+**It's a co-presence recorder, not a location tracker** — and that distinction is
+the whole point. TT never needs to know where you are when you're *alone*; it only
+ever cares about time you spend *with* someone who's also in your group and opted
+in. Your solo whereabouts never leave your phone.
 
 ```bash
 pip install -e .
@@ -90,7 +92,26 @@ who may log/see it), and duplicate uploads from both phones in a hang are
 - **Biggest risk:** reliable *background* iOS↔iOS Bluetooth detection — to be
   de-risked on two real phones before building the app.
 
-## Roadmap
+## Current status (the honest version)
+
+**✅ works & tested** — 21 passing tests. The whole *backend* half of the dream is
+real: the co-presence engine (noisy Bluetooth sightings → clean sessions →
+Wrapped) and a FastAPI service (auth, groups, ingest, Wrapped) that I've smoke-
+tested over actual HTTP. You can watch a full Wrapped fall out of a simulated week
+right now with `tt demo`.
+
+**🚧 still drafting** — the actual iOS app isn't built yet, on purpose. There's one
+make-or-break question hiding under all of this: *can two iPhones in your pocket
+reliably notice each other over Bluetooth in the background?* iOS is famously
+stingy about that. So the very next step isn't "build the app," it's a tiny
+two-phone spike to get a real go/no-go before betting on it.
+
+**💡 ideas / where it's headed** — the de-risk spike → the iOS client (detect +
+upload + a Wrapped screen) → fun group analytics ("your 2am person," "your third
+place," biggest group hang). The dream is a wholesome friendship-Wrapped you
+actually look forward to.
+
+### How it got here
 
 - **Engine + simulator (done):** sightings → sessions → Wrapped, fully tested.
 - **Backend (done):** FastAPI auth, groups/invites, session ingest (shared-group
