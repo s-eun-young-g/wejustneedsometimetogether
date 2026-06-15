@@ -3,11 +3,11 @@
 `stitch_sessions` is the core: per pair of people, sort their sightings, drop the
 weak ones, then split into runs wherever there's a gap longer than `t_gap`. Each
 run becomes a session if it lasted at least `t_min`. This is the noise-rejection
-that makes "you and Alex, 9:00–11:30 at The Crown" fall out of a jittery stream of
+that makes "you and Alex, 9:00-11:30 at The Crown" fall out of a jittery stream of
 Bluetooth blips.
 
-`group_moments` then asks a different question — *when were 3+ people together at
-once?* — by sweeping the pairwise sessions as edges over time and looking for
+`group_moments` then asks a different question - *when were 3+ people together at
+once?* - by sweeping the pairwise sessions as edges over time and looking for
 connected components of three or more.
 """
 

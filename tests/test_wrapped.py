@@ -44,7 +44,7 @@ def test_streak_with_alex():
     r = _report()
     who, days = r.longest_streak
     assert who == "alex"
-    assert days >= 4                      # Mon–Thu coffee streak
+    assert days >= 4                      # Mon-Thu coffee streak
 
 
 def test_biggest_group_is_friday_trio():

@@ -1,8 +1,8 @@
-"""time-together (TT) — a co-presence engine.
+"""time-together (TT) - a co-presence engine.
 
 Records how much time you spend physically with people in your group (not where
 you are when you're alone), and turns it into a "Wrapped." This package is the
-testable core — sightings → sessions → analytics — that the iOS app and backend
+testable core - sightings -> sessions -> analytics - that the iOS app and backend
 will sit on top of.
 """
 

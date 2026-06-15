@@ -22,14 +22,14 @@ def _cmd_demo(args) -> int:
     report = wrapped(sessions, me="you",
                      period=(base, base + timedelta(days=7)),
                      home_work=("Office",))
-    print(f"(simulated {len(sightings)} sightings → {len(sessions)} sessions)\n")
+    print(f"(simulated {len(sightings)} sightings -> {len(sessions)} sessions)\n")
     print(report.summary())
     return 0
 
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
-        prog="tt", description="time-together — a co-presence + Wrapped engine.")
+        prog="tt", description="time-together - a co-presence + Wrapped engine.")
     sub = parser.add_subparsers(dest="command", required=True)
 
     p_demo = sub.add_parser("demo", help="run the built-in scenario and print a Wrapped")

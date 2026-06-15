@@ -50,12 +50,12 @@ def test_group_create_and_join(client):
 def test_ingest_requires_shared_group(client):
     you_id, you = register(client, "you")
     alex_id, alex = register(client, "alex")
-    # not in a group together yet → ingest is rejected (0 ingested)
+    # not in a group together yet -> ingest is rejected (0 ingested)
     body = {"sessions": [{"peer_id": alex_id, "start": BASE.isoformat(),
                           "end": (BASE + timedelta(minutes=40)).isoformat(),
                           "place": "Java House"}]}
     assert client.post("/sessions", json=body, headers=you).json()["ingested"] == 0
-    # join a shared group → now allowed
+    # join a shared group -> now allowed
     code = client.post("/groups", json={"name": "Crew"}, headers=you).json()["invite_code"]
     client.post("/groups/join", json={"invite_code": code}, headers=alex)
     assert client.post("/sessions", json=body, headers=you).json()["ingested"] == 1
@@ -83,12 +83,12 @@ def test_wrapped_endpoint(client):
     data = r.json()
     assert data["me"] == "you"
     assert data["top_person"] == "alex"
-    assert data["total_minutes"] == 120        # 3 × 40 min
+    assert data["total_minutes"] == 120        # 3 x 40 min
     assert data["third_place"] == "Java House"
 
 
 def test_wrapped_reconciles_duplicate_uploads(client):
-    """Both phones upload the same hang → it should count once, not twice."""
+    """Both phones upload the same hang -> it should count once, not twice."""
     you, alex = _setup_hangs(client)
     # alex re-uploads the same first coffee (overlapping) from their side
     s = BASE

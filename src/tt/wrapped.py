@@ -1,7 +1,7 @@
-"""Wrapped — the fun layer. Once sessions exist, every stat is a query.
+"""Wrapped - the fun layer. Once sessions exist, every stat is a query.
 
 All of this is computed from one person's point of view (`me`) over an optional
-period. Nothing here needs the network or a phone — it's pure aggregation over
+period. Nothing here needs the network or a phone - it's pure aggregation over
 the session log, which is exactly why it's easy and testable.
 """
 
@@ -21,7 +21,7 @@ class WrappedReport:
     total_time: timedelta
     by_person: list[tuple[str, timedelta]]          # most time first
     longest_hang: Session | None
-    after_midnight: list[tuple[str, timedelta]]     # 00:00–04:00 companions
+    after_midnight: list[tuple[str, timedelta]]     # 00:00-04:00 companions
     top_places: list[tuple[str, timedelta]]
     third_place: str | None
     new_people: list[str]
@@ -37,7 +37,7 @@ class WrappedReport:
             m = int(td.total_seconds() // 60)
             return f"{m // 60}h {m % 60}m"
 
-        lines = [f"✨ {self.me}'s Wrapped ✨",
+        lines = [f"{self.me}'s Wrapped",
                  f"Total time with people: {hm(self.total_time)}", ""]
         lines.append("Most time with:")
         for person, td in self.by_person[:5]:
@@ -96,7 +96,7 @@ def wrapped(sessions: list[Session], me: str,
     place_rank = sorted(places.items(), key=lambda kv: kv[1], reverse=True)
     # "Third place" = your *regular* spot: most-visited place that isn't home/work
     # (ranked by number of visits, then total time), not just where you logged the
-    # most hours — a single long night out shouldn't outrank the daily coffee.
+    # most hours - a single long night out shouldn't outrank the daily coffee.
     candidates = [(p, place_visits[p], places[p]) for p in places if p not in home_work]
     candidates.sort(key=lambda c: (c[1], c[2]), reverse=True)
     third = candidates[0][0] if candidates else None

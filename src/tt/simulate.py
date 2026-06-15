@@ -1,5 +1,5 @@
-"""Simulator — generate sightings from a script of hangs, so we can exercise the
-whole pipeline (sightings → sessions → Wrapped) with no phones.
+"""Simulator - generate sightings from a script of hangs, so we can exercise the
+whole pipeline (sightings -> sessions -> Wrapped) with no phones.
 
 A `Hang` says "these people were together at this place from start to end." We
 emit a Bluetooth sighting for every pair, every `sample` interval, with optional
@@ -48,7 +48,7 @@ def demo_scenario(base: datetime) -> list[Hang]:
         return base + timedelta(days=day, hours=hour, minutes=minute)
 
     hangs = [
-        # Mon–Thu morning coffee with Alex (a steady streak, at the same café)
+        # Mon-Thu morning coffee with Alex (a steady streak, at the same café)
         Hang(("you", "alex"), at(0, 9), at(0, 9, 40), "Java House"),
         Hang(("you", "alex"), at(1, 9), at(1, 9, 35), "Java House"),
         Hang(("you", "alex"), at(2, 9), at(2, 9, 50), "Java House"),

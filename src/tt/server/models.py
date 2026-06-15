@@ -1,7 +1,7 @@
 """Database tables and request/response shapes for the backend.
 
 Privacy-shaped on purpose: the only thing stored about your whereabouts is a
-**session** — two people who were together, when, and (optionally) where. There is
+**session** - two people who were together, when, and (optionally) where. There is
 no continuous-location table because the phone never uploads one. A session is
 between two *users*, not scoped to a group; a group just decides who can see it
 (both participants must share a group for it to count).
@@ -15,7 +15,7 @@ from sqlmodel import Field, SQLModel
 
 
 def utcnow() -> datetime:
-    """Naive UTC 'now' — naive throughout so it never clashes with the naive
+    """Naive UTC 'now' - naive throughout so it never clashes with the naive
     timestamps phones upload."""
     return datetime.now(timezone.utc).replace(tzinfo=None)
 

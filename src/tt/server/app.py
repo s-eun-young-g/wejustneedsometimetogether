@@ -4,7 +4,7 @@ the `tt` engine.
 `create_app(db_url)` is a factory so tests can spin up a fresh in-memory database.
 Auth is intentionally minimal for the MVP: register returns a bearer token that
 identifies the user on later requests (a real build would use Sign in with Apple /
-phone OTP — swapping that in only touches `register` and `current_user`).
+phone OTP - swapping that in only touches `register` and `current_user`).
 """
 
 from __future__ import annotations
@@ -118,7 +118,7 @@ def create_app(db_url: str = "sqlite:///tt.db") -> FastAPI:
         for item in body.sessions:
             peer_groups = my_group_ids(session, item.peer_id)
             if not (mine & peer_groups):
-                continue                      # no shared group → not allowed to log
+                continue                      # no shared group -> not allowed to log
             a, b = sorted((user.id, item.peer_id))
             session.add(Sess(user_a=a, user_b=b, start=item.start,
                              end=item.end, place=item.place))

@@ -24,7 +24,7 @@ def test_one_clean_session():
 
 
 def test_short_gap_is_bridged():
-    # two runs 0–10 and 13–25, gap of 3 min (< default 5) -> one session
+    # two runs 0-10 and 13-25, gap of 3 min (< default 5) -> one session
     sightings = pings("you", "alex", 0, 10) + pings("you", "alex", 13, 25)
     s = stitch_sessions(sightings)
     assert len(s) == 1
@@ -55,7 +55,7 @@ def test_separate_pairs_dont_merge():
 
 
 def test_group_moment_detects_three_together():
-    # you–alex, you–sam, alex–sam all overlap 0–30 -> a 3-person group hang
+    # you-alex, you-sam, alex-sam all overlap 0-30 -> a 3-person group hang
     sightings = (pings("you", "alex", 0, 30) + pings("you", "sam", 0, 30)
                  + pings("alex", "sam", 0, 30))
     sessions = stitch_sessions(sightings)
@@ -67,7 +67,7 @@ def test_group_moment_detects_three_together():
 def test_no_group_when_only_pairs():
     sightings = pings("you", "alex", 0, 30) + pings("you", "sam", 0, 30)
     # you with each, but alex & sam never see each other -> still a 3-chain!
-    # without alex–sam edge they're a connected component of 3 via you.
+    # without alex-sam edge they're a connected component of 3 via you.
     sessions = stitch_sessions(sightings)
     groups = group_moments(sessions)
     assert len(groups) == 1 and len(groups[0].members) == 3

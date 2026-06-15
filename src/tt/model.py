@@ -1,10 +1,10 @@
 """Core types for the co-presence engine.
 
 The app is a *co-presence recorder*, not a location tracker: the only things that
-ever become durable records are **sessions** — spans of time two (or more) people
+ever become durable records are **sessions** - spans of time two (or more) people
 in a group were physically together. A session is built from raw **sightings**
 (one phone seeing another over Bluetooth), and the only location ever attached is
-the place of a session that's already happening — never your solo whereabouts.
+the place of a session that's already happening - never your solo whereabouts.
 
 Everything here is plain data so the engine can be unit-tested against simulated
 days with no phone in the loop.
@@ -20,7 +20,7 @@ from datetime import datetime, timedelta
 class Sighting:
     """One device seeing another at a moment in time.
 
-    `a`/`b` are user ids (order doesn't matter — `pair` normalizes them). `rssi`
+    `a`/`b` are user ids (order doesn't matter - `pair` normalizes them). `rssi`
     is Bluetooth signal strength (higher = closer; ~-60 near, ~-90 far). `place`
     is the on-device-resolved place label, present only while a hang is active."""
     a: str
@@ -58,7 +58,7 @@ class Session:
 
 @dataclass(frozen=True)
 class StitchParams:
-    """Knobs that turn a noisy sighting stream into clean sessions — these *are*
+    """Knobs that turn a noisy sighting stream into clean sessions - these *are*
     the product's feel.
 
     rssi_threshold : ignore sightings weaker than this (too far to count as "together")
