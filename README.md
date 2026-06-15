@@ -1,6 +1,6 @@
-# we just need some time together
+# we just need some time together (title wip)
 
-How much time do you actually spend with your people, and where, and when? TT
+How much time do you actually spend with your people, and where, and when? Time Together (TT)
 notices when you and someone in your group are physically together, logs the time
 and place, and at the end gives you a "Wrapped" for your friendships. Think Life360,
 but wholesome and far less surveillance-heavy.
